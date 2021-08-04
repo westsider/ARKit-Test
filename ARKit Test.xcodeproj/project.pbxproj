@@ -75,8 +75,8 @@
 			children = (
 				84F18DFF26BAAA8800D79E20 /* ViewController.swift */,
 				84F18E0326BAAA8800D79E20 /* Main.storyboard */,
-				84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */,
 				84F18E0126BAAA8800D79E20 /* Experience.rcproject */,
+				84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */,
 				84F18E0626BAAA8A00D79E20 /* Assets.xcassets */,
 				84F18E0826BAAA8A00D79E20 /* LaunchScreen.storyboard */,
 				84F18E1126BAAB2100D79E20 /* GoogleService-Info.plist */,
