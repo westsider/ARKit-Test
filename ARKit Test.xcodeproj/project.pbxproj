@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,13 @@
 		84F18E0526BAAA8800D79E20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E0326BAAA8800D79E20 /* Main.storyboard */; };
 		84F18E0726BAAA8A00D79E20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E0626BAAA8A00D79E20 /* Assets.xcassets */; };
 		84F18E0A26BAAA8A00D79E20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E0826BAAA8A00D79E20 /* LaunchScreen.storyboard */; };
+		84F18E1226BAAB2100D79E20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E1126BAAB2100D79E20 /* GoogleService-Info.plist */; };
+		93C0DFE9880120CE25D09C78 /* Pods_ARKit_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C42D12CF84F1804D0CA086 /* Pods_ARKit_Test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5CABB4DB09A886390FFA4D02 /* Pods-ARKit Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKit Test.release.xcconfig"; path = "Target Support Files/Pods-ARKit Test/Pods-ARKit Test.release.xcconfig"; sourceTree = "<group>"; };
+		80C42D12CF84F1804D0CA086 /* Pods_ARKit_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKit_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F18DFA26BAAA8800D79E20 /* ARKit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F18DFF26BAAA8800D79E20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +28,8 @@
 		84F18E0626BAAA8A00D79E20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F18E0926BAAA8A00D79E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F18E0B26BAAA8A00D79E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F18E1126BAAB2100D79E20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E81FA7A2DB1168DE814B5116 /* Pods-ARKit Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKit Test.debug.xcconfig"; path = "Target Support Files/Pods-ARKit Test/Pods-ARKit Test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C0DFE9880120CE25D09C78 /* Pods_ARKit_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F0C7EFDC5B7A90418FBB6B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80C42D12CF84F1804D0CA086 /* Pods_ARKit_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84F18DF126BAAA8800D79E20 = {
 			isa = PBXGroup;
 			children = (
 				84F18DFC26BAAA8800D79E20 /* ARKit Test */,
 				84F18DFB26BAAA8800D79E20 /* Products */,
+				875777B84460159FAAA2B434 /* Pods */,
+				3F0C7EFDC5B7A90418FBB6B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +73,25 @@
 		84F18DFC26BAAA8800D79E20 /* ARKit Test */ = {
 			isa = PBXGroup;
 			children = (
-				84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */,
 				84F18DFF26BAAA8800D79E20 /* ViewController.swift */,
-				84F18E0126BAAA8800D79E20 /* Experience.rcproject */,
 				84F18E0326BAAA8800D79E20 /* Main.storyboard */,
+				84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */,
+				84F18E0126BAAA8800D79E20 /* Experience.rcproject */,
 				84F18E0626BAAA8A00D79E20 /* Assets.xcassets */,
 				84F18E0826BAAA8A00D79E20 /* LaunchScreen.storyboard */,
+				84F18E1126BAAB2100D79E20 /* GoogleService-Info.plist */,
 				84F18E0B26BAAA8A00D79E20 /* Info.plist */,
 			);
 			path = "ARKit Test";
+			sourceTree = "<group>";
+		};
+		875777B84460159FAAA2B434 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E81FA7A2DB1168DE814B5116 /* Pods-ARKit Test.debug.xcconfig */,
+				5CABB4DB09A886390FFA4D02 /* Pods-ARKit Test.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84F18E0E26BAAA8A00D79E20 /* Build configuration list for PBXNativeTarget "ARKit Test" */;
 			buildPhases = (
+				4A646886EA69AA60653E7130 /* [CP] Check Pods Manifest.lock */,
 				84F18DF626BAAA8800D79E20 /* Sources */,
 				84F18DF726BAAA8800D79E20 /* Frameworks */,
 				84F18DF826BAAA8800D79E20 /* Resources */,
+				F91345E2F9BCF8EC1A4CFA99 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,12 +154,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F18E0A26BAAA8A00D79E20 /* LaunchScreen.storyboard in Resources */,
+				84F18E1226BAAB2100D79E20 /* GoogleService-Info.plist in Resources */,
 				84F18E0726BAAA8A00D79E20 /* Assets.xcassets in Resources */,
 				84F18E0526BAAA8800D79E20 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4A646886EA69AA60653E7130 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARKit Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F91345E2F9BCF8EC1A4CFA99 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ARKit Test/Pods-ARKit Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ARKit Test/Pods-ARKit Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ARKit Test/Pods-ARKit Test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84F18DF626BAAA8800D79E20 /* Sources */ = {
@@ -283,6 +355,7 @@
 		};
 		84F18E0F26BAAA8A00D79E20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E81FA7A2DB1168DE814B5116 /* Pods-ARKit Test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +375,7 @@
 		};
 		84F18E1026BAAA8A00D79E20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CABB4DB09A886390FFA4D02 /* Pods-ARKit Test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
