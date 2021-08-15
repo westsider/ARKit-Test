@@ -12,12 +12,12 @@ import ARKit
 
 class ViewController: UIViewController  {
     
-
     @IBOutlet weak var sceneView: ARSCNView!
             
     let email = "whansen1@mac.com"
     let password = "123456"
     var analysis = ""
+    var guides: Experience.Guides!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,6 @@ class ViewController: UIViewController  {
         guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
         sceneView.delegate = self
         sceneView.showsStatistics = true
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,13 +34,15 @@ class ViewController: UIViewController  {
         UIApplication.shared.isIdleTimerDisabled = true
         let configuration = ARFaceTrackingConfiguration()
         sceneView.session.run(configuration)
-
+        
+        // set up guides
+        let arAnchor = try! Experience.loadGuides() 
+        //sceneView.session.add(anchor: arAnchor)
     }
     
 
     override func viewWillDisappear(_ animated: Bool) {
       super.viewWillDisappear(animated)
-      
       sceneView.session.pause()
     }
 
@@ -78,10 +79,18 @@ extension ViewController: ARSCNViewDelegate {
     
     // display face mesh
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        
+        let arAnchor = try! Experience.loadGuides()
+        //let gris = SCNNode(geometry: arAnchor)
+        
         let faceMesh = ARSCNFaceGeometry(device: sceneView.device!)
         let node = SCNNode(geometry: faceMesh)
         node.geometry?.firstMaterial?.fillMode = .lines
-        node.opacity = 0.35
+        node.geometry?.firstMaterial?.diffuse.contents = UIColor.lightGray
+        node.opacity = 0.5
+        
+        //node.addChildNode(arAnchor)
+        
         return node
     }
     
@@ -93,6 +102,7 @@ extension ViewController: ARSCNViewDelegate {
         }
     }
     
+    // read facial input
     func expression(anchor: ARFaceAnchor) {
         // 1
         let smileLeft = anchor.blendShapes[.mouthSmileLeft]
