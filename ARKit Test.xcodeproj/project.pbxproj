@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8488635726C88FC000DC9D17 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488635626C88FC000DC9D17 /* Mask.swift */; };
+		84AD933626C9586900B6D3EA /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AD933526C9586900B6D3EA /* Circle.swift */; };
 		84F18DFE26BAAA8800D79E20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */; };
 		84F18E0026BAAA8800D79E20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F18DFF26BAAA8800D79E20 /* ViewController.swift */; };
 		84F18E0226BAAA8800D79E20 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 84F18E0126BAAA8800D79E20 /* Experience.rcproject */; };
@@ -22,6 +23,7 @@
 		5CABB4DB09A886390FFA4D02 /* Pods-ARKit Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKit Test.release.xcconfig"; path = "Target Support Files/Pods-ARKit Test/Pods-ARKit Test.release.xcconfig"; sourceTree = "<group>"; };
 		80C42D12CF84F1804D0CA086 /* Pods_ARKit_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARKit_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8488635626C88FC000DC9D17 /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
+		84AD933526C9586900B6D3EA /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		84F18DFA26BAAA8800D79E20 /* ARKit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F18DFF26BAAA8800D79E20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				84F18E0326BAAA8800D79E20 /* Main.storyboard */,
 				84F18DFF26BAAA8800D79E20 /* ViewController.swift */,
+				84AD933526C9586900B6D3EA /* Circle.swift */,
 				8488635626C88FC000DC9D17 /* Mask.swift */,
 				84F18E0126BAAA8800D79E20 /* Experience.rcproject */,
 				84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AD933626C9586900B6D3EA /* Circle.swift in Sources */,
 				84F18E0026BAAA8800D79E20 /* ViewController.swift in Sources */,
 				8488635726C88FC000DC9D17 /* Mask.swift in Sources */,
 				84F18DFE26BAAA8800D79E20 /* AppDelegate.swift in Sources */,

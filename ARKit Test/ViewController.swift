@@ -9,6 +9,9 @@ import UIKit
 import RealityKit
 import Firebase
 import ARKit
+import CoreMotion
+
+
 
 class ViewController: UIViewController, ARSessionDelegate  {
             
@@ -20,6 +23,7 @@ class ViewController: UIViewController, ARSessionDelegate  {
     var guides: Experience.Guides!
     
     
+    // code created ARView
     // MARK: - TODO -use ar view to dosplay face mesh
     
     override func viewDidLoad() {
@@ -42,6 +46,17 @@ class ViewController: UIViewController, ARSessionDelegate  {
         let arAnchor = try! Experience.loadGuides()
         arView.scene.anchors.append(arAnchor)
         guides = arAnchor
+        
+        // add circle for center
+        let width = view.frame.width * 0.50
+        let height = width * 1.4
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let crosshairDrawing = Dot(frame: frame)
+        crosshairDrawing.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(crosshairDrawing)
+        crosshairDrawing.center = CGPoint(x: view.frame.size.width  / 2,
+                                   y: view.frame.size.height / 2)
+        
     }
     
 
@@ -77,6 +92,19 @@ class ViewController: UIViewController, ARSessionDelegate  {
             print("Strong self signed in: \(strongSelf.email)")
         }
     }
+    
+//    internal func drawRingFittingInsideView(rect: CGRect) -> CAShapeLayer {
+//        let desiredLineWidth:CGFloat = 4    // Your desired value
+//        let hw:CGFloat = desiredLineWidth/2
+//        
+//        let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: hw,dy: hw))
+//        let shapeLayer = CAShapeLayer()
+//        shapeLayer.path = circlePath.cgPath
+//        shapeLayer.fillColor = UIColor.clear.cgColor
+//        shapeLayer.strokeColor = UIColor.red.cgColor
+//        shapeLayer.lineWidth = desiredLineWidth
+//        return shapeLayer
+//    }
 }
 
 extension ViewController {
@@ -129,11 +157,11 @@ extension ViewController {
 
         if pan && tilt && rolly {
             print("LOCKED")
-            //_ = TextHelp.makeText(textAnchor: lazer, message: "LOCKED")
+            _ = TextHelp.makeText(textAnchor: guides, message: "LOCKED")
         } else {
             let message =  String("\(pan ? "" : "yaw \(yawS)") \(tilt ? "" : "\npitch \(pitchS)") \(rolly ? "" : "\nroll \(rollS)")")
             print(message)
-            //_ = TextHelp.makeText(textAnchor: lazer, message: message)
+            _ = TextHelp.makeText(textAnchor: guides, message: message)
         }
         
     }
@@ -182,4 +210,40 @@ extension ViewController {
 //        }
 //        print(analysis)
 //    }
+}
+
+class TextHelp {
+    static func makeText(textAnchor: Experience.Guides, message: String) -> Experience.Guides? {
+        print(message)
+        let textEntity: Entity =  (textAnchor.infoSign?.children[0].children[0])!
+        var textModelComponent: ModelComponent = (textEntity.components[ModelComponent])!
+        guard let myFont = UIFont(name: "Helvetica-Light", size: 0.05) else { return nil }
+        
+        textModelComponent.mesh = .generateText(message,
+                                                extrusionDepth: 0.0,
+                                                font: myFont,
+                                                containerFrame: CGRect.zero,
+                                                alignment: .center,
+                                                lineBreakMode: .byCharWrapping)
+        textAnchor.infoSign?.children[0].children[0].components.set(textModelComponent)
+        return textAnchor
+    }
+    
+    
+    static func getDegrees() -> String {
+        let manager = CMMotionManager()
+        var angle = "NA"
+        if manager.isDeviceMotionAvailable {
+            manager.deviceMotionUpdateInterval = 0.01
+            manager.startDeviceMotionUpdates(to: OperationQueue.main) {
+                (data, error) in
+                if let data = data {
+                    let rotation = atan2(data.gravity.x, data.gravity.y) - .pi
+                    let rotS = String(rotation)
+                    angle =  rotS
+                }
+            }
+        }
+        return angle
+    }
 }
