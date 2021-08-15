@@ -10,46 +10,41 @@ import RealityKit
 import Firebase
 import ARKit
 
-class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
+class ViewController: UIViewController  {
     
-  
-    @IBOutlet var sceneView: ARSCNView!
-    
+
+    @IBOutlet weak var sceneView: ARSCNView!
+            
     let email = "whansen1@mac.com"
     let password = "123456"
-  
+    var analysis = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         signIn()
+        guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
         sceneView.delegate = self
-        sceneView.session.delegate = self
-        sceneView.automaticallyUpdatesLighting = true
+        sceneView.showsStatistics = true
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // AR experiences typically involve moving the device without
-        // touch input for some time, so prevent auto screen dimming.
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        // "Reset" to run the AR session for the first time.
-        resetTracking()
+        let configuration = ARFaceTrackingConfiguration()
+        sceneView.session.run(configuration)
+
     }
     
-    /// - Tag: ARFaceTrackingSetup
-    func resetTracking() {
-        guard ARFaceTrackingConfiguration.isSupported else { return }
-        let configuration = ARFaceTrackingConfiguration()
-        if #available(iOS 13.0, *) {
-            configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
-        }
-        configuration.isLightEstimationEnabled = true
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
+
+    override func viewWillDisappear(_ animated: Bool) {
+      super.viewWillDisappear(animated)
+      
+      sceneView.session.pause()
     }
+
     
     // Auto-hide the home indicator to maximize immersion in AR experiences.
     override var prefersHomeIndicatorAutoHidden: Bool {
@@ -76,5 +71,48 @@ class ViewController: UIViewController, ARSessionDelegate, ARSCNViewDelegate {
             print(authResult)
             print("Strong self signed in: \(strongSelf.email)")
         }
+    }
+}
+
+extension ViewController: ARSCNViewDelegate {
+    
+    // display face mesh
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        let faceMesh = ARSCNFaceGeometry(device: sceneView.device!)
+        let node = SCNNode(geometry: faceMesh)
+        node.geometry?.firstMaterial?.fillMode = .lines
+        node.opacity = 0.35
+        return node
+    }
+    
+    // update face mesh
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        if let faceAnchor = anchor as? ARFaceAnchor, let faceGeometry = node.geometry as? ARSCNFaceGeometry {
+            faceGeometry.update(from: faceAnchor.geometry)
+            expression(anchor: faceAnchor)
+        }
+    }
+    
+    func expression(anchor: ARFaceAnchor) {
+        // 1
+        let smileLeft = anchor.blendShapes[.mouthSmileLeft]
+        let smileRight = anchor.blendShapes[.mouthSmileRight]
+        let cheekPuff = anchor.blendShapes[.cheekPuff]
+        let tongue = anchor.blendShapes[.tongueOut]
+        self.analysis = ""
+     
+        // 2
+        if ((smileLeft?.decimalValue ?? 0.0) + (smileRight?.decimalValue ?? 0.0)) > 0.9 {
+            self.analysis += "You are smiling. "
+        }
+     
+        if cheekPuff?.decimalValue ?? 0.0 > 0.1 {
+            self.analysis += "Your cheeks are puffed. "
+        }
+     
+        if tongue?.decimalValue ?? 0.0 > 0.1 {
+            self.analysis += "Don't stick your tongue out! "
+        }
+        print(analysis)
     }
 }
