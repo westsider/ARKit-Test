@@ -13,7 +13,7 @@ import CoreMotion
 
 
 
-class ViewController: UIViewController, ARSessionDelegate  {
+class AlignViewController: UIViewController, ARSessionDelegate  {
             
     @IBOutlet weak var arView: ARView!
     
@@ -21,7 +21,9 @@ class ViewController: UIViewController, ARSessionDelegate  {
     let password = "123456"
     var analysis = ""
     var guides: Experience.Guides!
-    
+    let segueName = "profileSegue"
+    var selectedImage: UIImage?
+    var dot: Dot?
     
     // code created ARView
     // MARK: - TODO -use ar view to dosplay face mesh
@@ -65,6 +67,12 @@ class ViewController: UIViewController, ARSessionDelegate  {
         arView.session.pause()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let image = selectedImage else { return }
+        if let target = segue.destination as? ProfileViewController {
+            target.selectedImage = selectedImage
+        }
+    }
     
     // Auto-hide the home indicator to maximize immersion in AR experiences.
     override var prefersHomeIndicatorAutoHidden: Bool {
@@ -92,22 +100,9 @@ class ViewController: UIViewController, ARSessionDelegate  {
             print("Strong self signed in: \(strongSelf.email)")
         }
     }
-    
-//    internal func drawRingFittingInsideView(rect: CGRect) -> CAShapeLayer {
-//        let desiredLineWidth:CGFloat = 4    // Your desired value
-//        let hw:CGFloat = desiredLineWidth/2
-//        
-//        let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: hw,dy: hw))
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = circlePath.cgPath
-//        shapeLayer.fillColor = UIColor.clear.cgColor
-//        shapeLayer.strokeColor = UIColor.red.cgColor
-//        shapeLayer.lineWidth = desiredLineWidth
-//        return shapeLayer
-//    }
 }
 
-extension ViewController {
+extension AlignViewController {
     
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
         
@@ -116,7 +111,6 @@ extension ViewController {
         let arFrame = session.currentFrame!
         if arFrame.anchors.count < 1 { return }
         guard let faceAnchor = arFrame.anchors[0] as? ARFaceAnchor else { return }
-        
         
         let projectionMatrix = arFrame.camera.projectionMatrix(for: .portrait, viewportSize: arView.bounds.size, zNear: 0.001, zFar: 1000)
         let viewMatrix = arFrame.camera.viewMatrix(for: .portrait)
@@ -158,6 +152,7 @@ extension ViewController {
         if pan && tilt && rolly {
             print("LOCKED")
             _ = TextHelp.makeText(textAnchor: guides, message: "LOCKED")
+            captureImage()
         } else {
             let message =  String("\(pan ? "" : "yaw \(yawS)") \(tilt ? "" : "\npitch \(pitchS)") \(rolly ? "" : "\nroll \(rollS)")")
             print(message)
@@ -165,51 +160,15 @@ extension ViewController {
         }
         
     }
-    // display face mesh
-//    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-//
-//        let faceMesh = ARSCNFaceGeometry(device: arView.)
-//        let node = SCNNode(geometry: faceMesh)
-//        node.geometry?.firstMaterial?.fillMode = .lines
-//        node.geometry?.firstMaterial?.diffuse.contents = UIColor.lightGray
-//        node.opacity = 0.5
-//
-//        //node.addChildNode(arAnchor)
-//
-//        return node
-//    }
-//    
-//    // update face mesh
-//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-//        if let faceAnchor = anchor as? ARFaceAnchor, let faceGeometry = node.geometry as? ARSCNFaceGeometry {
-//            faceGeometry.update(from: faceAnchor.geometry)
-//            expression(anchor: faceAnchor)
-//        }
-//    }
-//    
-//    // read facial input
-//    func expression(anchor: ARFaceAnchor) {
-//        // 1
-//        let smileLeft = anchor.blendShapes[.mouthSmileLeft]
-//        let smileRight = anchor.blendShapes[.mouthSmileRight]
-//        let cheekPuff = anchor.blendShapes[.cheekPuff]
-//        let tongue = anchor.blendShapes[.tongueOut]
-//        self.analysis = ""
-//     
-//        // 2
-//        if ((smileLeft?.decimalValue ?? 0.0) + (smileRight?.decimalValue ?? 0.0)) > 0.9 {
-//            self.analysis += "You are smiling. "
-//        }
-//     
-//        if cheekPuff?.decimalValue ?? 0.0 > 0.1 {
-//            self.analysis += "Your cheeks are puffed. "
-//        }
-//     
-//        if tongue?.decimalValue ?? 0.0 > 0.1 {
-//            self.analysis += "Don't stick your tongue out! "
-//        }
-//        print(analysis)
-//    }
+    
+    func captureImage() {
+        if let pixelBuffer = arView.session.currentFrame?.capturedImage {
+            arView.session.pause()
+            let image = UIImage(ciImage: CIImage(cvPixelBuffer: pixelBuffer))
+            self.selectedImage = image
+            self.performSegue(withIdentifier: self.segueName, sender: nil)
+        }
+    }
 }
 
 class TextHelp {

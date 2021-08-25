@@ -10,13 +10,14 @@
 		8488635726C88FC000DC9D17 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488635626C88FC000DC9D17 /* Mask.swift */; };
 		84AD933626C9586900B6D3EA /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AD933526C9586900B6D3EA /* Circle.swift */; };
 		84F18DFE26BAAA8800D79E20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */; };
-		84F18E0026BAAA8800D79E20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F18DFF26BAAA8800D79E20 /* ViewController.swift */; };
+		84F18E0026BAAA8800D79E20 /* AlignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F18DFF26BAAA8800D79E20 /* AlignViewController.swift */; };
 		84F18E0226BAAA8800D79E20 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 84F18E0126BAAA8800D79E20 /* Experience.rcproject */; };
 		84F18E0526BAAA8800D79E20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E0326BAAA8800D79E20 /* Main.storyboard */; };
 		84F18E0726BAAA8A00D79E20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E0626BAAA8A00D79E20 /* Assets.xcassets */; };
 		84F18E0A26BAAA8A00D79E20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E0826BAAA8A00D79E20 /* LaunchScreen.storyboard */; };
 		84F18E1226BAAB2100D79E20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84F18E1126BAAB2100D79E20 /* GoogleService-Info.plist */; };
 		93C0DFE9880120CE25D09C78 /* Pods_ARKit_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C42D12CF84F1804D0CA086 /* Pods_ARKit_Test.framework */; };
+		98C0000026D6977400568924 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0FFFF26D6977400568924 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,13 +27,14 @@
 		84AD933526C9586900B6D3EA /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		84F18DFA26BAAA8800D79E20 /* ARKit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F18DFD26BAAA8800D79E20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84F18DFF26BAAA8800D79E20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84F18DFF26BAAA8800D79E20 /* AlignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignViewController.swift; sourceTree = "<group>"; };
 		84F18E0126BAAA8800D79E20 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		84F18E0426BAAA8800D79E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84F18E0626BAAA8A00D79E20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F18E0926BAAA8A00D79E20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F18E0B26BAAA8A00D79E20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F18E1126BAAB2100D79E20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		98C0FFFF26D6977400568924 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E81FA7A2DB1168DE814B5116 /* Pods-ARKit Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARKit Test.debug.xcconfig"; path = "Target Support Files/Pods-ARKit Test/Pods-ARKit Test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				84F18E0326BAAA8800D79E20 /* Main.storyboard */,
-				84F18DFF26BAAA8800D79E20 /* ViewController.swift */,
+				84F18DFF26BAAA8800D79E20 /* AlignViewController.swift */,
+				98C0FFFF26D6977400568924 /* ProfileViewController.swift */,
 				84AD933526C9586900B6D3EA /* Circle.swift */,
 				8488635626C88FC000DC9D17 /* Mask.swift */,
 				84F18E0126BAAA8800D79E20 /* Experience.rcproject */,
@@ -215,8 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98C0000026D6977400568924 /* ProfileViewController.swift in Sources */,
 				84AD933626C9586900B6D3EA /* Circle.swift in Sources */,
-				84F18E0026BAAA8800D79E20 /* ViewController.swift in Sources */,
+				84F18E0026BAAA8800D79E20 /* AlignViewController.swift in Sources */,
 				8488635726C88FC000DC9D17 /* Mask.swift in Sources */,
 				84F18DFE26BAAA8800D79E20 /* AppDelegate.swift in Sources */,
 				84F18E0226BAAA8800D79E20 /* Experience.rcproject in Sources */,
